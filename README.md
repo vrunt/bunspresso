@@ -1,2 +1,11 @@
-# bunspresso
-espresso measurement web app, w fresh/deno/bun
+# fresh project
+
+### Usage
+
+Start the project:
+
+```
+deno task start
+```
+
+This will watch the project directory and restart as necessary.
