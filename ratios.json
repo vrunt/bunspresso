@@ -1,12 +1,24 @@
-{
-  "aeropress": {
+[
+  {
+    "name": "aeropress",
     "ratio": {
-        "coffee": 1,
-        "water": 6
+      "coffee": 1,
+      "water": 6
     },
     "starting": {
-        "coffee": 15,
-        "water": 90
+      "coffee": 15,
+      "water": 90
+    }
+  },
+  {
+    "name": "espresso",
+    "ratio": {
+      "coffee": 1,
+      "water": 2
+    },
+    "starting": {
+      "coffee": 20,
+      "water": 40
     }
   }
-}
+]
