@@ -1,24 +1,38 @@
 /** @jsx h */
-import { h } from "preact";
+import { ComponentChild, h } from "preact";
 import { useState } from "preact/hooks";
 // import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
+import DrinkSelector from './DrinkSelector.tsx'
+
 
 
 
 export default function Calculator(props: {}) {
+
 
     const [chosenDrink, setChosenDrink] = useState(
         "aeropress"
     )
 
     const [recipe, setRecipe] = useState({
-        coffee: 0 || props.data.find(item => item.name === `${chosenDrink}`).starting.coffee,
-        water: 0 || props.data.find(item => item.name === `${chosenDrink}`).starting.water,
+        coffee: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.coffee,
+        water: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.water,
         cups: 1
     })
 
-    console.log(props.data.find(item => item.name === `${chosenDrink}`).starting.coffee)
+    const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
+        setChosenDrink(event.target.value)
+        setRecipe({
+            coffee: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.coffee,
+            water: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.water,
+            cups: 1
+        })
+        console.log("stats after change: ", chosenDrink, recipe)
+    }
+
+    console.log("stats at start: ", chosenDrink, recipe)
+
     const btn = tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
     return (
         <div>
@@ -48,6 +62,28 @@ export default function Calculator(props: {}) {
                     +1
                 </button>
             </div>
+            <select name="drinks" id="fruit-select" onChange={handleChange}>
+                {props.data.map((option: {
+                    name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
+                }, index: any) => (
+                    <option key={index} value={option.value}>
+                        {option.name}
+                    </option>
+                ))}
+            </select>
+            {/* <DrinkSelector props={props.data} /> */}
         </div>
     );
+}
+
+function coffee(coffee: any, arg1: any, water: any, arg3: any, cups: any, arg5: number) {
+    throw new Error("Function not implemented.");
+}
+
+function water(coffee: any, arg1: any, water: any, arg3: any, cups: any, arg5: number) {
+    throw new Error("Function not implemented.");
+}
+
+function cups(coffee: any, arg1: any, water: any, arg3: any, cups: any, arg5: number) {
+    throw new Error("Function not implemented.");
 }

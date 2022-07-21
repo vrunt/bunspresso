@@ -20,5 +20,71 @@
       "coffee": 20,
       "water": 40
     }
+  },
+  {
+    "name": "french press",
+    "ratio": {
+      "coffee": 1,
+      "water": 12
+    },
+    "starting": {
+      "coffee": 30,
+      "water": 350
+    }
+  },
+  {
+    "name": "moka",
+    "ratio": {
+      "coffee": 1,
+      "water": 10
+    },
+    "starting": {
+      "coffee": 20,
+      "water": 200
+    }
+  },
+  {
+    "name": "v60",
+    "ratio": {
+      "coffee": 3,
+      "water": 50
+    },
+    "starting": {
+      "coffee": 15,
+      "water": 250
+    }
+  },
+  {
+    "name": "chemex",
+    "ratio": {
+      "coffee": 1,
+      "water": 17
+    },
+    "starting": {
+      "coffee": 30,
+      "water": 510
+    }
+  },
+  {
+    "name": "siphon",
+    "ratio": {
+      "coffee": 3,
+      "water": 40
+    },
+    "starting": {
+      "coffee": 15,
+      "water": 250
+    }
+  },
+  {
+    "name": "cold brew",
+    "ratio": {
+      "coffee": 9,
+      "water": 40
+    },
+    "starting": {
+      "coffee": 18,
+      "water": 80
+    }
   }
 ]
