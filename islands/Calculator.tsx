@@ -24,7 +24,7 @@ export default function Calculator(props: {}) {
     useEffect(() => {
         console.log("recipe: ", chosenDrink, recipe)
     }, [chosenDrink, recipe])
-   
+
     const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
         let newCoffeeType = event.target.value
         setChosenDrink(newCoffeeType)
@@ -34,7 +34,31 @@ export default function Calculator(props: {}) {
             cups: 1
         })
     }
+
+    const handleSubmit = (event: {
+        preventDefault(); target: { value: string; };
+    }) => {
+        console.log(event.target.value)
+        // let newCups = parseInt(recipe.cups)
+        // setRecipe({
+        //     cups: newCups,
+        //     coffee: recipe.coffee,
+        //     water: recipe.water
+        // })
+        console.log("text box submitted, value = ")
+        event.preventDefault()
+    }
+
+    
+    const handleCups = (event: { target: { value: any; }; }) => {
+        setRecipe({
+            cups: event.target.value,
+            coffee: recipe.coffee,
+            water: recipe.water
+        })
+    }
     // const changeRecipe = () => {}
+   
 
     const btn = tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
     return (
@@ -46,7 +70,6 @@ export default function Calculator(props: {}) {
             </div>
             <div class={tw`flex flex-row py-10 gap-2 w-1/2`}>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>How many cups?</p>
-                <p class={tw`flex-grow-1 text-l`}>{recipe.cups}</p>
                 <button
                     class={btn}
                     onClick={() => setRecipe({
@@ -56,6 +79,10 @@ export default function Calculator(props: {}) {
                     })}>
                     -1
                 </button>
+                <form onSubmit={handleSubmit}>
+                    <input class="border-2" type="text" value={recipe.cups} onChange={handleCups}></input>
+                    <input type="submit" class={tw`flex-grow-1 px-6 border-2 border-indigo-600 text-l`} value="set cups"></input>
+                </form>
                 <button
                     class={btn}
                     onClick={() => setRecipe({
@@ -66,7 +93,7 @@ export default function Calculator(props: {}) {
                     +1
                 </button>
             </div>
-            <select name="drinks" id="fruit-select" onChange={handleChange}>
+            <select name="drinks" id="drink-select" onChange={handleChange}>
                 {props.data.map((option: {
                     name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
                 }, index: any) => (
