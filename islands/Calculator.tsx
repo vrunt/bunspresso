@@ -1,6 +1,6 @@
 /** @jsx h */
 import { ComponentChild, h } from "preact";
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 // import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
 import DrinkSelector from './DrinkSelector.tsx'
@@ -21,22 +21,26 @@ export default function Calculator(props: {}) {
         cups: 1
     })
 
+    useEffect(() => {
+        console.log("recipe: ", chosenDrink, recipe)
+    }, [chosenDrink, recipe])
+   
     const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
-        setChosenDrink(event.target.value)
+        let newCoffeeType = event.target.value
+        setChosenDrink(newCoffeeType)
         setRecipe({
-            coffee: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.coffee,
-            water: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.water,
+            coffee: 0 || props.data.find((item: { name: string; }) => item.name === newCoffeeType).starting.coffee,
+            water: 0 || props.data.find((item: { name: string; }) => item.name === newCoffeeType).starting.water,
             cups: 1
         })
-        console.log("stats after change: ", chosenDrink, recipe)
     }
-
-    console.log("stats at start: ", chosenDrink, recipe)
+    // const changeRecipe = () => {}
 
     const btn = tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
     return (
         <div>
             <div class={tw`flex gap-2 w-full`}>
+                <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>coffee: {recipe.coffee * recipe.cups}</p>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>water: {recipe.water * recipe.cups}</p>
             </div>
