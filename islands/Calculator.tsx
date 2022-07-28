@@ -12,12 +12,13 @@ export default function Calculator(props: {}) {
 
 
     const [chosenDrink, setChosenDrink] = useState(
-        "aeropress"
+        ""
+        // props.data[0].name;
     )
 
     const [recipe, setRecipe] = useState({
-        coffee: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.coffee,
-        water: 0 || props.data.find((item: { name: string; }) => item.name === `${chosenDrink}`).starting.water,
+        coffee: 0,
+        water: 0,
         cups: 1
     })
 
@@ -26,6 +27,7 @@ export default function Calculator(props: {}) {
     }, [chosenDrink, recipe])
 
     const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
+        console.log("change triggered")
         let newCoffeeType = event.target.value
         setChosenDrink(newCoffeeType)
         setRecipe({
@@ -39,13 +41,6 @@ export default function Calculator(props: {}) {
         preventDefault(); target: { value: string; };
     }) => {
         console.log(event.target.value)
-        // let newCups = parseInt(recipe.cups)
-        // setRecipe({
-        //     cups: newCups,
-        //     coffee: recipe.coffee,
-        //     water: recipe.water
-        // })
-        console.log("text box submitted, value = ")
         event.preventDefault()
     }
 
@@ -57,7 +52,7 @@ export default function Calculator(props: {}) {
             water: recipe.water
         })
     }
-    // const changeRecipe = () => {}
+
    
 
     const btn = tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
@@ -93,16 +88,17 @@ export default function Calculator(props: {}) {
                     +1
                 </button>
             </div>
-            <select name="drinks" id="drink-select" onChange={handleChange}>
-                {props.data.map((option: {
+            {/* // <select name="drinks" id="drink-select" onChange={handleChange}>
+            //   <option>choose a drink</option>
+            //     {props.data.map((option: {
                     name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
                 }, index: any) => (
                     <option key={index} value={option.value}>
                         {option.name}
                     </option>
                 ))}
-            </select>
-            {/* <DrinkSelector props={props.data} /> */}
+            </select> */}
+            <DrinkSelector props={props.data} onChange={handleChange}/>
         </div>
     );
 }
