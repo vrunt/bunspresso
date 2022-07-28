@@ -52,7 +52,7 @@ export default function Calculator(props: {}) {
     
     const handleCups = (event: { target: { value: any; }; }) => {
         setRecipe({
-            cups: event.target.value,
+            cups: Math.max(1, event.target.value),
             coffee: recipe.coffee,
             water: recipe.water
         })
@@ -73,7 +73,7 @@ export default function Calculator(props: {}) {
                 <button
                     class={btn}
                     onClick={() => setRecipe({
-                        cups: recipe.cups - 1,
+                        cups: Math.max(1, recipe.cups - 1),
                         coffee: recipe.coffee,
                         water: recipe.water
                     })}>
