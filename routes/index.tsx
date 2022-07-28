@@ -6,11 +6,10 @@ import ratios from '../ratios.json' assert { type: "json" }
 
 export default function Home() {
   return (
-    <div class={tw`p-4 mx-auto max-w-screen-md`}>
+    <div class={tw`p-4 mx-auto max-w-screen-md border-double border-2 rounded-3xl`}>
       <img
         src="/espressocup.png"
         class={tw`h-12`}
-        alt="the fresh logo: a sliced lemon dripping with juice"
       />
       <p class={tw`my-6`}>
        Coffee ratios here.
