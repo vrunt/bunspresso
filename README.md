@@ -1,11 +1,5 @@
-# fresh project
+# bunspresso
 
-### Usage
+### a coffee measuring app
 
-Start the project:
-
-```
-deno task start
-```
-
-This will watch the project directory and restart as necessary.
+built with fresh (fresh.deno.dev) to run with bun (bun.sh)
