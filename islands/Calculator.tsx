@@ -72,8 +72,14 @@ export default function Calculator(props: CalculatorProps) {
         <div>
             <div class={tw`flex gap-2 w-full`}>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p>
-                <p class={tw`flex-grow-1 font-bold text-xl`}>coffee: {recipe.coffee * recipe.cups}</p>
-                <p class={tw`flex-grow-1 font-bold text-xl`}>water: {recipe.water * recipe.cups}</p>
+                <p class={tw`flex-grow-1 font-bold text-xl`}><img
+                src="/cbeans.png"
+                class={tw`h-12`}
+              /> {recipe.coffee * recipe.cups}</p>
+                <p class={tw`flex-grow-1 font-bold text-xl`}><img
+                src="/water.png"
+                class={tw`h-12`}
+              /> {recipe.water * recipe.cups}</p>
             </div>
             <div class={tw`flex flex-row py-10 gap-2 w-1/2`}>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>How many cups?</p>
