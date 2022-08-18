@@ -101,15 +101,3 @@ export default function Calculator(props: {}) {
         </div>
     );
 }
-
-function coffee(coffee: any, arg1: any, water: any, arg3: any, cups: any, arg5: number) {
-    throw new Error("Function not implemented.");
-}
-
-function water(coffee: any, arg1: any, water: any, arg3: any, cups: any, arg5: number) {
-    throw new Error("Function not implemented.");
-}
-
-function cups(coffee: any, arg1: any, water: any, arg3: any, cups: any, arg5: number) {
-    throw new Error("Function not implemented.");
-}
