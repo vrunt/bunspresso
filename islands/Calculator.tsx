@@ -3,7 +3,7 @@ import { ComponentChild, h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 // import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
-import DrinkSelector from './DrinkSelector.tsx'
+//import DrinkSelector from './DrinkSelector.tsx'
 
 
 
@@ -12,8 +12,8 @@ export default function Calculator(props: {}) {
 
 
     const [chosenDrink, setChosenDrink] = useState(
-        ""
-        // props.data[0].name;
+        //""
+         props.data[0].name
     )
 
     const [recipe, setRecipe] = useState({
@@ -88,17 +88,16 @@ export default function Calculator(props: {}) {
                     +1
                 </button>
             </div>
-            {/* // <select name="drinks" id="drink-select" onChange={handleChange}>
-            //   <option>choose a drink</option>
-            //     {props.data.map((option: {
+            {<select name="drinks" id="drink-select" onChange={handleChange}>
+               <option>choose a drink</option>
+                 {props.data.map((option: {
                     name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
                 }, index: any) => (
                     <option key={index} value={option.value}>
                         {option.name}
                     </option>
                 ))}
-            </select> */}
-            <DrinkSelector props={props.data} onChange={handleChange}/>
+            </select>}
         </div>
     );
 }
