@@ -2,7 +2,7 @@
 /** @jsx h */
 import { useRef } from "https://esm.sh/v86/preact@10.8.2/hooks/src/index";
 import { ComponentChild, ComponentChildren, h, VNode } from "preact";
-
+/*
 
 export interface DrinkSelectorProps{
   onChange: (drink: string|undefined) => void
@@ -30,4 +30,11 @@ export default function DrinkSelector(props: DrinkSelectorProps) {
     </select>
     )
 }
+*/
 
+export default function DrinkSelector() {
+  return (
+    <select>
+    </select>
+    )
+}
