@@ -2,6 +2,7 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import Calculator from "../islands/Calculator.tsx";
+import DrinkSelector from "../islands/DrinkSelector.tsx";
 import ratios from '../ratios.json' assert { type: "json" }
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
        Coffee ratios here.
       </p>
       <Calculator storePtr={storePtr} data={ratios} />
+      <DrinkSelector storePtr={storePtr} data={ratios} />
     </div>
   );
 }

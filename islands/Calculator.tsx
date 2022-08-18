@@ -12,17 +12,30 @@ interface CalculatorProps {
 }
 
 export default function Calculator(props: CalculatorProps) {
-
-    const chosenDrink = useStore("aeropress", {
-        pointer: props.storePtr,
-        onChange: (newState) => console.log(`New value: ${newState}`)
+    const [chosenDrink, setChosenDrink] = useState("aeropress");
+    useStore(chosenDrink, {
+      pointer: props.storePtr,
+      onChange: (newState) => {
+          setChosenDrink(newState)
+          handleChange()
+      }
     })
+
+    function getRecipeCoffee() {
+        return props.data.find((item: { name: string; }) => item.name === chosenDrink).starting.coffee 
+    }
+
+    function getRecipeWater() {
+        return props.data.find((item: { name: string; }) => item.name === chosenDrink).starting.water 
+    }
 
     const [recipe, setRecipe] = useState({
-        coffee: 0,
-        water: 0,
+        coffee: getRecipeCoffee(),
+        water: getRecipeWater(),
         cups: 1
     })
+
+
 
     useEffect(() => {
         console.log("recipe: ", Stores.get<string>(props.storePtr), recipe)
@@ -30,17 +43,14 @@ export default function Calculator(props: CalculatorProps) {
 
     const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
         console.log("change triggered")
-        let newCoffeeType = event.target.value
-        Stores.get<string>(chosenDrink)?.set(newCoffeeType);
         setRecipe({
-            coffee: 0 || props.data.find((item: { name: string; }) => item.name === newCoffeeType).starting.coffee,
-            water: 0 || props.data.find((item: { name: string; }) => item.name === newCoffeeType).starting.water,
+            coffee: getRecipeCoffee(),
+            water: getRecipeWater(),
             cups: 1
         })
     }
 
-    const handleSubmit = (event: {
-        preventDefault(); target: { value: string; };
+    const handleSubmit = (event: { target: { value: string; };
     }) => {
         console.log(event.target.value)
         event.preventDefault()
@@ -61,7 +71,7 @@ export default function Calculator(props: CalculatorProps) {
     return (
         <div>
             <div class={tw`flex gap-2 w-full`}>
-                <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {Stores.get<string>(chosenDrink)?.state}</p>
+                <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>coffee: {recipe.coffee * recipe.cups}</p>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>water: {recipe.water * recipe.cups}</p>
             </div>
@@ -90,16 +100,6 @@ export default function Calculator(props: CalculatorProps) {
                     +1
                 </button>
             </div>
-            {<select name="drinks" id="drink-select" onChange={handleChange}>
-               <option>choose a drink</option>
-                 {props.data.map((option: {
-                    name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
-                }, index: any) => (
-                    <option key={index} value={option.value}>
-                        {option.name}
-                    </option>
-                ))}
-            </select>}
         </div>
     );
 }

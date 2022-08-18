@@ -1,26 +1,30 @@
-
 /** @jsx h */
 import { useRef } from "https://esm.sh/v86/preact@10.8.2/hooks/src/index";
 import { ComponentChild, ComponentChildren, h, VNode } from "preact";
-/*
+import { useStore, Stores } from "https://deno.land/x/fresh_store@v0.1.1/mod.ts";
 
 export interface DrinkSelectorProps{
-  onChange: (drink: string|undefined) => void
+  storePtr: string
+  // deno-lint-ignore no-explicit-any
+  data: any
 }
+
 export default function DrinkSelector(props: DrinkSelectorProps) {
-    const data = props.props;
-    console.log(props)
 
-    const selectedDrink = useRef<HTMLInputElement>(null)
+  const chosenDrink = useStore("aeropress", {
+    pointer: props.storePtr
+})
 
-    const handleSelectDrink = () => {
-      
-      props.onChange(selectedDrink?.current?.value);
-    }
-    return (
-      <select ref={selectedDrink} name="drinks" id="drink-select" onChange={handleSelectDrink}>
-      <option>drinkselector a drink</option>
-        {data.map((option: {
+  // deno-lint-ignore no-explicit-any
+  const handleChosenDrink = (event: { target: { value: any; }; }) => {
+    const newCoffeeType = event.target.value
+    Stores.get<string>(chosenDrink)?.set(newCoffeeType);
+  }
+
+  return (
+    <div>
+   <select name="drinks" id="drink-select" onChange={handleChosenDrink}>
+        {props.data.map((option: {
             name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
         }, index: any) => (
             <option key={index} value={option.value}>
@@ -28,13 +32,7 @@ export default function DrinkSelector(props: DrinkSelectorProps) {
             </option>
         ))}
     </select>
+    </div>
     )
 }
-*/
 
-export default function DrinkSelector() {
-  return (
-    <select>
-    </select>
-    )
-}
