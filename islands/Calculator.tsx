@@ -1,20 +1,22 @@
 /** @jsx h */
 import { ComponentChild, h } from "preact";
 import { useState, useEffect } from "preact/hooks";
-// import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
-//import DrinkSelector from './DrinkSelector.tsx'
+import { Stores, useStore } from "https://deno.land/x/fresh_store@v0.1.1/mod.ts";
 
 
+interface CalculatorProps {
+    storePtr: string
+    // deno-lint-ignore no-explicit-any
+    data: any
+}
 
+export default function Calculator(props: CalculatorProps) {
 
-export default function Calculator(props: {}) {
-
-
-    const [chosenDrink, setChosenDrink] = useState(
-        //""
-         props.data[0].name
-    )
+    const chosenDrink = useStore("aeropress", {
+        pointer: props.storePtr,
+        onChange: (newState) => console.log(`New value: ${newState}`)
+    })
 
     const [recipe, setRecipe] = useState({
         coffee: 0,
@@ -23,13 +25,13 @@ export default function Calculator(props: {}) {
     })
 
     useEffect(() => {
-        console.log("recipe: ", chosenDrink, recipe)
-    }, [chosenDrink, recipe])
+        console.log("recipe: ", Stores.get<string>(props.storePtr), recipe)
+    }, [Stores.get<string>(chosenDrink)?.state, recipe])
 
     const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
         console.log("change triggered")
         let newCoffeeType = event.target.value
-        setChosenDrink(newCoffeeType)
+        Stores.get<string>(chosenDrink)?.set(newCoffeeType);
         setRecipe({
             coffee: 0 || props.data.find((item: { name: string; }) => item.name === newCoffeeType).starting.coffee,
             water: 0 || props.data.find((item: { name: string; }) => item.name === newCoffeeType).starting.water,
@@ -59,7 +61,7 @@ export default function Calculator(props: {}) {
     return (
         <div>
             <div class={tw`flex gap-2 w-full`}>
-                <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p>
+                <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {Stores.get<string>(chosenDrink)?.state}</p>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>coffee: {recipe.coffee * recipe.cups}</p>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>water: {recipe.water * recipe.cups}</p>
             </div>

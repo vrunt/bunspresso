@@ -5,6 +5,9 @@ import Calculator from "../islands/Calculator.tsx";
 import ratios from '../ratios.json' assert { type: "json" }
 
 export default function Home() {
+
+  const storePtr = crypto.randomUUID();
+
   return (
     <div class={tw`p-4 mx-auto max-w-screen-md border-double border-2 rounded-3xl`}>
       <img
@@ -14,7 +17,7 @@ export default function Home() {
       <p class={tw`my-6`}>
        Coffee ratios here.
       </p>
-      <Calculator data={ratios} />
+      <Calculator storePtr={storePtr} data={ratios} />
     </div>
   );
 }
