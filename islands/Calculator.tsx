@@ -84,26 +84,25 @@ export default function Calculator(props: CalculatorProps) {
             <div class={tw`flex flex-row py-10 gap-2 w-1/2`}>
                 <p class={tw`flex-grow-1 font-bold text-xl`}>How many cups?</p>
                 <button
-                    class={btn}
+                    class={tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
                     onClick={() => setRecipe({
                         cups: Math.max(1, recipe.cups - 1),
                         coffee: recipe.coffee,
                         water: recipe.water
                     })}>
-                    -1
+                    -
                 </button>
                 <form onSubmit={handleSubmit}>
-                    <input class="border-2" type="text" value={recipe.cups} onChange={handleCups}></input>
-                    <input type="submit" class={tw`flex-grow-1 px-6 border-2 border-indigo-600 text-l`} value="set cups"></input>
+                    <input class={tw`inset-0 align-middle text-center min-h-full w-10 font-bold`} type="text" value={recipe.cups} onChange={handleCups}></input>
                 </form>
                 <button
-                    class={btn}
+                    class={tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-r-lg`}
                     onClick={() => setRecipe({
                         cups: recipe.cups + 1,
                         coffee: recipe.coffee,
                         water: recipe.water
                     })}>
-                    +1
+                    +
                 </button>
             </div>
         </div>
