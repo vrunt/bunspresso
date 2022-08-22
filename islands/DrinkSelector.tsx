@@ -11,14 +11,14 @@ export interface DrinkSelectorProps{
 
 export default function DrinkSelector(props: DrinkSelectorProps) {
 
-  const chosenDrink = useStore("aeropress", {
+  const chosenDrinkPointer = useStore("aeropress", {
     pointer: props.storePtr
 })
 
   // deno-lint-ignore no-explicit-any
   const handleChosenDrink = (event: { target: { value: any; }; }) => {
     const newCoffeeType = event.target.value
-    Stores.get<string>(chosenDrink)?.set(newCoffeeType);
+    Stores.get<string>(chosenDrinkPointer)?.set(newCoffeeType);
   }
 
   return (

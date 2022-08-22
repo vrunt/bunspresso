@@ -5,10 +5,8 @@
       "coffee": 1,
       "water": 6
     },
-    "starting": {
-      "coffee": 15,
-      "water": 90
-    }
+    "startingCoffee": 15,
+    "explanation": "The ratio of 1:6 is taken from the original recipe by Alan Adler; inventor of the Aeropress. This brew ratio results in a concentrate, much like an espresso—you can add hot water or milk to your liking."
   },
   {
     "name": "espresso",
@@ -16,10 +14,8 @@
       "coffee": 1,
       "water": 2
     },
-    "starting": {
-      "coffee": 20,
-      "water": 40
-    }
+    "startingCoffee": 20,
+    "explanation": "1:2 is the most common ratio for espresso used in cafés today. Between the bitter 1:1 of a ristretto and the weaker 1:4 of a lungo."
   },
   {
     "name": "french press",
@@ -27,21 +23,17 @@
       "coffee": 1,
       "water": 12
     },
-    "starting": {
-      "coffee": 30,
-      "water": 350
-    }
+    "startingCoffee": 30,
+    "explanation": "Although there is no original or definitive coffee to water ratio for a french press, 1:12 seems to be a popular choice. We derived this from a recipe for a 17oz (500g) capacity french press."
   },
   {
-    "name": "moka",
+    "name": "moka pot",
     "ratio": {
       "coffee": 1,
       "water": 10
     },
-    "starting": {
-      "coffee": 20,
-      "water": 200
-    }
+    "startingCoffee": 20,
+    "explanation": "We derived the ratio of 1:10 from a Bialetti Junior Moka Pot, which has a 200ml water capacity. This serves about 2 small cups of delicious coffee."
   },
   {
     "name": "v60",
@@ -49,10 +41,8 @@
       "coffee": 3,
       "water": 50
     },
-    "starting": {
-      "coffee": 15,
-      "water": 250
-    }
+    "startingCoffee": 15,
+    "explanation": "Hario, the makers of the v60, recommend a ratio of 3:50 —15g of coffee to 250g of water for one full mug."
   },
   {
     "name": "chemex",
@@ -60,10 +50,8 @@
       "coffee": 1,
       "water": 17
     },
-    "starting": {
-      "coffee": 30,
-      "water": 510
-    }
+    "startingCoffee": 30,
+    "explanation": "Chemex recommends you “put one rounded tablespoon of coffee per 5 oz cup into the filter cone.” This is roughly a 1:10 ratio, but most people agree that's too strong. Many winning baristas have used a ratio between 1:13 to 1:17."
   },
   {
     "name": "siphon",
@@ -71,10 +59,8 @@
       "coffee": 3,
       "water": 40
     },
-    "starting": {
-      "coffee": 15,
-      "water": 250
-    }
+    "startingCoffee": 15, 
+    "explanation": "Hario, one of the leading producers of syphon coffee makers, recommends 15-17g of coffee per 250 grams water."
   },
   {
     "name": "cold brew",
@@ -82,9 +68,7 @@
       "coffee": 9,
       "water": 40
     },
-    "starting": {
-      "coffee": 18,
-      "water": 80
-    }
+    "startingCoffee": 18,
+    "explanation": "There are many ways to make cold brew coffee. This recipe uses a Filtron, a reliable method of making a smooth cold brew. This results in a concentrate that you can dilute to your tastes."
   }
 ]
