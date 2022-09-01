@@ -36,7 +36,7 @@ export default function Calculator(props: CalculatorProps) {
 
     function getRecipeWater(newDrink?: string) {
         const drink: string = newDrink ? newDrink : chosenDrink;
-        return props.data.find((item: { name: string; }) => item.name === drink).ratio.water * props.data.find((item: { name: string; }) => item.name === chosenDrink).startingCoffee
+        return props.data.find((item: { name: string; }) => item.name === drink).ratio.water * props.data.find((item: { name: string; }) => item.name === drink).startingCoffee
     }
 
     function getDrinkExplanation(newDrink?: string) {
