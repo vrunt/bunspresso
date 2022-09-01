@@ -17,7 +17,7 @@ export default function Calculator(props: CalculatorProps) {
         pointer: props.storePtr,
         onChange: (newState) => {
             setChosenDrink(newState)
-            handleChange()
+            handleChange(newState)
         }
     })
 
@@ -29,16 +29,19 @@ export default function Calculator(props: CalculatorProps) {
 
     const [explanation, setExplanation] = useState(getDrinkExplanation())
 
-    function getRecipeCoffee() {
-        return props.data.find((item: { name: string; }) => item.name === chosenDrink).startingCoffee
+    function getRecipeCoffee(newDrink?: string) {
+        const drink: string = newDrink ? newDrink : chosenDrink;
+        return props.data.find((item: { name: string; }) => item.name === drink).startingCoffee
     }
 
-    function getRecipeWater() {
-        return props.data.find((item: { name: string; }) => item.name === chosenDrink).ratio.water * props.data.find((item: { name: string; }) => item.name === chosenDrink).startingCoffee
+    function getRecipeWater(newDrink?: string) {
+        const drink: string = newDrink ? newDrink : chosenDrink;
+        return props.data.find((item: { name: string; }) => item.name === drink).ratio.water * props.data.find((item: { name: string; }) => item.name === chosenDrink).startingCoffee
     }
 
-    function getDrinkExplanation() {
-        return props.data.find((item: { name: string; }) => item.name === chosenDrink).explanation
+    function getDrinkExplanation(newDrink?: string) {
+        const drink: string = newDrink ? newDrink : chosenDrink;
+        return props.data.find((item: { name: string; }) => item.name === drink).explanation
     }
 
 
@@ -48,14 +51,14 @@ export default function Calculator(props: CalculatorProps) {
         console.log("recipe: ", Stores.get<string>(props.storePtr), recipe)
     }, [Stores.get<string>(chosenDrink)?.state, recipe])
 
-    const handleChange = (event: { target: { value: string | ((prevState: string) => string); }; }) => {
+    const handleChange = (newDrink: string) => {
         console.log("change triggered")
         setRecipe({
-            coffee: getRecipeCoffee(),
-            water: getRecipeWater(),
+            coffee: getRecipeCoffee(newDrink),
+            water: getRecipeWater(newDrink),
             cups: 1
         })
-        setExplanation(getDrinkExplanation())
+        setExplanation(getDrinkExplanation(newDrink))
     }
 
     const handleSubmit = (event: {
