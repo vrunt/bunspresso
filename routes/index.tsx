@@ -13,13 +13,13 @@ export default function Home() {
     <div class={tw`p-4 mx-auto max-w-screen-md border-double border-2 rounded-3xl`}>
       <img
         src="/espressocup.png"
-        class={tw`h-12`}
+        class={tw`h-12 mb-8`}
       />
-      <p class={tw`my-6`}>
-       Coffee ratios here.
-      </p>
+      <div class={tw`flex flex-row content-start hover:bg-teal-200`}>
+        <p class={tw`font-bold text-xl pr-2 mb-8`}>drink: </p>
+        <DrinkSelector storePtr={storePtr} data={ratios} />
+      </div>
       <Calculator storePtr={storePtr} data={ratios} />
-      <DrinkSelector storePtr={storePtr} data={ratios} />
     </div>
   );
 }

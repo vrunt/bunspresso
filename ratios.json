@@ -65,10 +65,10 @@
   {
     "name": "cold brew",
     "ratio": {
-      "coffee": 9,
-      "water": 40
+      "coffee": 1,
+      "water": 8
     },
-    "startingCoffee": 18,
+    "startingCoffee": 125,
     "explanation": "There are many ways to make cold brew coffee. This recipe uses a Filtron, a reliable method of making a smooth cold brew. This results in a concentrate that you can dilute to your tastes."
   }
 ]

@@ -36,7 +36,8 @@ export default function Calculator(props: CalculatorProps) {
 
     function getRecipeWater(newDrink?: string) {
         const drink: string = newDrink ? newDrink : chosenDrink;
-        return props.data.find((item: { name: string; }) => item.name === drink).ratio.water * props.data.find((item: { name: string; }) => item.name === drink).startingCoffee
+        const drinkObj = props.data.find((item: { name: string; }) => item.name === drink);
+        return Math.floor(drinkObj.ratio.water / drinkObj.ratio.coffee * drinkObj.startingCoffee)
     }
 
     function getDrinkExplanation(newDrink?: string) {
@@ -81,14 +82,14 @@ export default function Calculator(props: CalculatorProps) {
 
     const btn = tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
     return (
-        <div>
-            <div class={tw`flex gap-2 w-full`}>
-                <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p>
-                <p class={tw`flex-grow-1 font-bold text-xl`}><img
+        <div tw={`flex flex-col`}>
+            <div class={tw`flex flex-row justify-center self-center w-1/2 border(teal-300 1)`}>
+                {/* <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p> */}
+                <p class={tw`font-bold text-xl px-8 py-8`}><img
                     src="/cbeans.png"
                     class={tw`h-12`}
                 /> {recipe.coffee * recipe.cups}</p>
-                <p class={tw`flex-grow-1 font-bold text-xl`}><img
+                <p class={tw`font-bold text-xl px-8 py-8`}><img
                     src="/water.png"
                     class={tw`h-12`}
                 /> {recipe.water * recipe.cups}</p>
