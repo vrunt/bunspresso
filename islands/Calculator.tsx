@@ -1,9 +1,6 @@
-/** @jsx h */
-import { ComponentChild, h } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import { tw } from "@twind";
 import { Stores, useStore } from "https://deno.land/x/fresh_store@v0.1.1/mod.ts";
-
+import SignalTest from "./SignalTest.tsx";
 
 interface CalculatorProps {
     storePtr: string
@@ -80,24 +77,24 @@ export default function Calculator(props: CalculatorProps) {
 
 
 
-    const btn = tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
+    const btn = `px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
     return (
-        <div tw={`flex flex-col`}>
-            <div class={tw`flex flex-row justify-center self-center w-1/2 border(teal-300 1)`}>
-                {/* <p class={tw`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p> */}
-                <p class={tw`font-bold text-xl px-8 py-8`}><img
+        <div class={`flex flex-col`}>
+            <div class={`flex flex-row justify-center self-center w-1/2 border(teal-300 1)`}>
+                {/* <p class={`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p> */}
+                <p class={`font-bold text-xl px-8 py-8`}><img
                     src="/cbeans.png"
-                    class={tw`h-12`}
+                    class={`h-12`}
                 /> {recipe.coffee * recipe.cups}</p>
-                <p class={tw`font-bold text-xl px-8 py-8`}><img
+                <p class={`font-bold text-xl px-8 py-8`}><img
                     src="/water.png"
-                    class={tw`h-12`}
+                    class={`h-12`}
                 /> {recipe.water * recipe.cups}</p>
             </div>
-            <div class={tw`flex flex-row py-10 gap-2 w-1/2`}>
-                <p class={tw`flex-grow-1 font-bold text-xl`}>How many cups?</p>
+            <div class={`flex flex-row py-10 gap-2 w-1/2`}>
+                <p class={`flex-grow-1 font-bold text-xl`}>How many cups?</p>
                 <button
-                    class={tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
+                    class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
                     onClick={() => setRecipe({
                         cups: Math.max(1, recipe.cups - 1),
                         coffee: recipe.coffee,
@@ -106,10 +103,10 @@ export default function Calculator(props: CalculatorProps) {
                     -
                 </button>
                 <form onSubmit={handleSubmit}>
-                    <input class={tw`inset-0 align-middle text-center min-h-full w-10 font-bold`} type="text" value={recipe.cups} onChange={handleCups}></input>
+                    <input class={`inset-0 align-middle text-center min-h-full w-10 font-bold`} type="text" value={recipe.cups} onChange={handleCups}></input>
                 </form>
                 <button
-                    class={tw`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-r-lg`}
+                    class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-r-lg`}
                     onClick={() => setRecipe({
                         cups: recipe.cups + 1,
                         coffee: recipe.coffee,
@@ -118,7 +115,8 @@ export default function Calculator(props: CalculatorProps) {
                     +
                 </button>
             </div>
-                <div id="explanation-container" class={tw`py-4 mb-4 px-4 bg-gray-200`}>
+                <SignalTest />
+                <div id="explanation-container" class={`py-4 mb-4 px-4 bg-gray-200`}>
                     <p>{explanation}</p>
                 </div>
         </div>

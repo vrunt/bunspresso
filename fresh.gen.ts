@@ -2,23 +2,29 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/index.tsx";
+import * as $2 from "./routes/signal_test.tsx";
 import * as $$0 from "./islands/Calculator.tsx";
 import * as $$1 from "./islands/Counter.tsx";
 import * as $$2 from "./islands/DrinkSelector.tsx";
+import * as $$3 from "./islands/SignalTest.tsx";
 
 const manifest = {
   routes: {
     "./routes/_app.tsx": $0,
     "./routes/index.tsx": $1,
+    "./routes/signal_test.tsx": $2,
   },
   islands: {
     "./islands/Calculator.tsx": $$0,
     "./islands/Counter.tsx": $$1,
     "./islands/DrinkSelector.tsx": $$2,
+    "./islands/SignalTest.tsx": $$3,
   },
   baseUrl: import.meta.url,
+  config,
 };
 
 export default manifest;
