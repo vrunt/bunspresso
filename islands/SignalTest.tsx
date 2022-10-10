@@ -1,4 +1,4 @@
-import { count } from "../utils/count.ts";
+import { count } from "../utils/signals.ts";
 
 export default function SignalTest() {
     console.log(count)

@@ -1,63 +1,28 @@
 import { useState, useEffect } from "preact/hooks";
 import { Stores, useStore } from "https://deno.land/x/fresh_store@v0.1.1/mod.ts";
-import SignalTest from "./SignalTest.tsx";
+import { cups, drink } from "../utils/signals.ts";
+import { computed } from "@preact/signals";
 
 interface CalculatorProps {
-    storePtr: string
     // deno-lint-ignore no-explicit-any
     data: any
 }
 
+console.log("logging drink signal: ", drink.value)
+
 export default function Calculator(props: CalculatorProps) {
-    const [chosenDrink, setChosenDrink] = useState("aeropress");
-    useStore(chosenDrink, {
-        pointer: props.storePtr,
-        onChange: (newState) => {
-            setChosenDrink(newState)
-            handleChange(newState)
-        }
+    const coffee = computed( () => {
+        return props.data.find((item: { name: string; }) => item.name === drink.value).startingCoffee * cups.value;
     })
 
-    const [recipe, setRecipe] = useState({
-        coffee: getRecipeCoffee(),
-        water: getRecipeWater(),
-        cups: 1
+    const water = computed( () => {
+        const drinkObj = props.data.find((item: { name: string; }) => item.name === drink.value);
+        return Math.floor(drinkObj.ratio.water / drinkObj.ratio.coffee * drinkObj.startingCoffee) * cups.value;
     })
 
-    const [explanation, setExplanation] = useState(getDrinkExplanation())
-
-    function getRecipeCoffee(newDrink?: string) {
-        const drink: string = newDrink ? newDrink : chosenDrink;
-        return props.data.find((item: { name: string; }) => item.name === drink).startingCoffee
-    }
-
-    function getRecipeWater(newDrink?: string) {
-        const drink: string = newDrink ? newDrink : chosenDrink;
-        const drinkObj = props.data.find((item: { name: string; }) => item.name === drink);
-        return Math.floor(drinkObj.ratio.water / drinkObj.ratio.coffee * drinkObj.startingCoffee)
-    }
-
-    function getDrinkExplanation(newDrink?: string) {
-        const drink: string = newDrink ? newDrink : chosenDrink;
-        return props.data.find((item: { name: string; }) => item.name === drink).explanation
-    }
-
-
-
-
-    useEffect(() => {
-        console.log("recipe: ", Stores.get<string>(props.storePtr), recipe)
-    }, [Stores.get<string>(chosenDrink)?.state, recipe])
-
-    const handleChange = (newDrink: string) => {
-        console.log("change triggered")
-        setRecipe({
-            coffee: getRecipeCoffee(newDrink),
-            water: getRecipeWater(newDrink),
-            cups: 1
-        })
-        setExplanation(getDrinkExplanation(newDrink))
-    }
+    const explanation = computed(() => {
+        return props.data.find((item: { name: string; }) => item.name === drink.value).explanation
+    })
 
     const handleSubmit = (event: {
         target: { value: string; };
@@ -66,16 +31,9 @@ export default function Calculator(props: CalculatorProps) {
         event.preventDefault()
     }
 
-
     const handleCups = (event: { target: { value: any; }; }) => {
-        setRecipe({
-            cups: Math.max(1, event.target.value),
-            coffee: recipe.coffee,
-            water: recipe.water
-        })
+        cups.value = Math.min(event.target.value, 1)
     }
-
-
 
     const btn = `px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
     return (
@@ -85,37 +43,28 @@ export default function Calculator(props: CalculatorProps) {
                 <p class={`font-bold text-xl px-8 py-8`}><img
                     src="/cbeans.png"
                     class={`h-12`}
-                /> {recipe.coffee * recipe.cups}</p>
+                /> {coffee}</p>
                 <p class={`font-bold text-xl px-8 py-8`}><img
                     src="/water.png"
                     class={`h-12`}
-                /> {recipe.water * recipe.cups}</p>
+                /> {water}</p>
             </div>
             <div class={`flex flex-row py-10 gap-2 w-1/2`}>
                 <p class={`flex-grow-1 font-bold text-xl`}>How many cups?</p>
                 <button
                     class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
-                    onClick={() => setRecipe({
-                        cups: Math.max(1, recipe.cups - 1),
-                        coffee: recipe.coffee,
-                        water: recipe.water
-                    })}>
+                    onClick={() => cups.value = Math.min(cups.value - 1, 1)}>
                     -
                 </button>
                 <form onSubmit={handleSubmit}>
-                    <input class={`inset-0 align-middle text-center min-h-full w-10 font-bold`} type="text" value={recipe.cups} onChange={handleCups}></input>
+                    <input class={`inset-0 align-middle text-center min-h-full w-10 font-bold`} type="text" value={cups} onChange={handleCups}></input>
                 </form>
                 <button
                     class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-r-lg`}
-                    onClick={() => setRecipe({
-                        cups: recipe.cups + 1,
-                        coffee: recipe.coffee,
-                        water: recipe.water
-                    })}>
+                    onClick={() => cups.value++}>
                     +
                 </button>
             </div>
-                <SignalTest />
                 <div id="explanation-container" class={`py-4 mb-4 px-4 bg-gray-200`}>
                     <p>{explanation}</p>
                 </div>

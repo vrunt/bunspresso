@@ -1,25 +1,26 @@
 import { useRef } from "https://esm.sh/v86/preact@10.8.2/hooks/src/index";
 import { ComponentChild, ComponentChildren, VNode } from "preact";
 import { useStore, Stores } from "https://deno.land/x/fresh_store@v0.1.1/mod.ts";
+import { drink } from "../utils/signals.ts";
+//import { drink } from "../utils/signals.ts";
 
 export interface DrinkSelectorProps{
-  storePtr: string
+  // storePtr: string
   // deno-lint-ignore no-explicit-any
   data: any
 }
 
 export default function DrinkSelector(props: DrinkSelectorProps) {
 
-  const chosenDrinkPointer = useStore("aeropress", {
-    pointer: props.storePtr
-})
+//  const chosenDrinkPointer = useStore("aeropress", {
+//    pointer: props.storePtr
+//})
 
   // deno-lint-ignore no-explicit-any
   const handleChosenDrink = (event: { target: { value: any; }; }) => {
-    const newCoffeeType = event.target.value
-    Stores.get<string>(chosenDrinkPointer)?.set(newCoffeeType);
+    drink.value = event.target.value
   }
-
+  console.log("drink signal value in drinkSelector: ", drink.value)
   return (
     <div>
    <select class="font-italic text-xl" name="drinks" id="drink-select" onChange={handleChosenDrink}>

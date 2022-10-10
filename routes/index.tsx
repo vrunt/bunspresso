@@ -1,6 +1,7 @@
 import Calculator from "../islands/Calculator.tsx";
 import DrinkSelector from "../islands/DrinkSelector.tsx";
 import ratios from '../ratios.json' assert { type: "json" }
+import Navigator from "../islands/Navigator.tsx";
 
 export default function Home() {
 
@@ -12,6 +13,7 @@ export default function Home() {
         src="/espressocup.png"
         class="h-12 mb-8"
       />
+      < Navigator />
       <div class="flex flex-row content-start hover:bg-teal-200">
         <p class="font-bold text-xl pr-2 mb-8">drink: </p>
         <DrinkSelector storePtr={storePtr} data={ratios} />
