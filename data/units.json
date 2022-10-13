@@ -1,0 +1,22 @@
+[
+    {
+        "name": "grams",
+        "symbol": "g",
+        "tograms": 1.0
+    },
+    {
+        "name": "ounces",
+        "symbol": "oz",
+        "tograms": 28.35
+    },
+    {
+        "name": "mililiters",
+        "symbol": "ml",
+        "tograms": 1.0
+    },
+    {
+        "name": "cups",
+        "symbol": "cups",
+        "tograms": 128.0
+    }
+]
