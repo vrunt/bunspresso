@@ -58,7 +58,7 @@ export default function Calculator() {
                         src="/cbeans.png"
                         class={`h-12 w-12`}
                     />
-                    <p class={`font-bold text-xl `}>
+                    <p class={`font-bold text-xl text-center`}>
                         {coffee} {coffeeUnits}</p>
                 </div>
                 <div class={`flex flex-col items-center justify-center px-8 py-8`}>
@@ -66,7 +66,7 @@ export default function Calculator() {
                         src="/water.png"
                         class={`h-12 w-12`}
                     />
-                    <p class={`font-bold text-xl p`}> {water} {waterUnits}</p>
+                    <p class={`font-bold text-xl text-center`}> {water} {waterUnits}</p>
                 </div>
             </div>
             <div class={`flex flex-row py-10 gap-2 w-1/2`}>
