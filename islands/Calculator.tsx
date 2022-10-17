@@ -2,19 +2,19 @@ import { servings, drink, coffeeUnits, waterUnits } from "../utils/signals.ts";
 import { computed } from "@preact/signals";
 import Selector from "../islands/Selector.tsx";
 import ratios from '../data/ratios.json' assert { type: "json" }
-import units from '../data/units.json' assert { type: "json" }
-
+import unitsCoffee from '../data/unitsCoffee.json' assert { type: "json" }
+import unitsWater from '../data/unitsWater.json' assert { type: "json" }
 
 export default function Calculator() {
     const coffee = computed(() => {
         const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
-        const coffeeUnitObj = units.find((item: { name: string; }) => item.name === coffeeUnits.value);
+        const coffeeUnitObj = unitsCoffee.find((item: { name: string; }) => item.name === coffeeUnits.value);
         return (drinkObj.startingCoffee * servings.value / coffeeUnitObj?.tograms).toFixed(2);
     })
 
     const water = computed(() => {
         const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
-        const waterUnitObj = units.find((item: { name: string; }) => item.name === waterUnits.value);
+        const waterUnitObj = unitsWater.find((item: { name: string; }) => item.name === waterUnits.value);
         return ((drinkObj.ratio.water / drinkObj.ratio.coffee * drinkObj.startingCoffee) * servings.value / waterUnitObj?.tograms).toFixed(2);
     })
 
@@ -29,8 +29,18 @@ export default function Calculator() {
         event.preventDefault()
     }
 
+    const handleWaterChange = (event: {target: {value: string; }}) => {
+        const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
+        const waterUnitObj = unitsWater.find((item: { name: string; }) => item.name === waterUnits.value);
+        const newServings = drinkObj.ratio.coffee * waterUnitObj.tograms * event.target.value / drinkObj.ratio.water
+        servings.value = newServings
+    } 
+        
+
+    // newServings = ratioCoffee * toGrams * waterVal / ratioWater / startingCoffee
+
     const handleCups = (event: { target: { value: any; }; }) => {
-        servings.value = Math.min(event.target.value, 1)
+        servings.value = Math.max(event.target.value, 1)
     }
 
     const btn = `px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
@@ -43,11 +53,11 @@ export default function Calculator() {
                 </div>
                 <div class={`flex flex-row pr-4 mb-8`}>
                     <p class="font-bold text-xl pr-1">coffee units: </p>
-                    <Selector data={units} selector={coffeeUnits} />
+                    <Selector data={unitsCoffee} selector={coffeeUnits} />
                 </div>
                 <div class={`flex flex-row pr-4 mb-8`}>
                     <p class="font-bold text-xl pr-1">water units: </p>
-                    <Selector data={units} selector={waterUnits} />
+                    <Selector data={unitsWater} selector={waterUnits} />
                 </div>
             </div>
 
@@ -66,14 +76,21 @@ export default function Calculator() {
                         src="/water.png"
                         class={`h-12 w-12`}
                     />
-                    <p class={`font-bold text-xl text-center`}> {water} {waterUnits}</p>
+                    <p class={`font-bold text-xl text-center`}>
+                        <input
+                            class={`font-bold text-xl text-center`}
+                            onChange={handleWaterChange}
+                            value={water}>
+                        </input>
+                        {waterUnits}
+                    </p>
                 </div>
             </div>
             <div class={`flex flex-row py-10 gap-2 w-1/2`}>
                 <p class={`flex-grow-1 font-bold text-xl`}>How many servings?</p>
                 <button
                     class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
-                    onClick={() => servings.value = Math.min(servings.value - 1, 1)}>
+                    onClick={() => servings.value = Math.max(servings.value - 1, 1)}>
                     -
                 </button>
                 <form onSubmit={handleSubmit}>

@@ -10,13 +10,8 @@
         "tograms": 28.35
     },
     {
-        "name": "mililiters",
-        "symbol": "ml",
-        "tograms": 1.0
-    },
-    {
-        "name": "cups",
-        "symbol": "cups",
-        "tograms": 128.0
+        "name": "tablespoons",
+        "symbol": "tbsp",
+        "tograms": 5.0
     }
 ]
