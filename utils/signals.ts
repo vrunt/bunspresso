@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { signal } from "@preact/signals";
 
 export const count = signal<number>(0);
@@ -13,7 +14,13 @@ export const coffeeUnits = signal<any>({
   toGrams: 1.0,
 });
 
-export const waterUnits = signal<string>("grams");
+export const waterUnits = signal<any>(
+  {
+    "name": "grams",
+    "symbol": "g",
+    "toGrams": 1.0
+}
+);
 
 // deno-lint-ignore no-explicit-any
 export const drinkObj = signal<any>({

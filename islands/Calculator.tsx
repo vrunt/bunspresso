@@ -17,8 +17,8 @@ export default function Calculator() {
 
     const water = computed(() => {
         // const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
-        const waterUnitObj = unitsWater.find((item: { name: string; }) => item.name === waterUnits.value);
-        return ((drinkObj.value.ratio.water / drinkObj.value.ratio.coffee * drinkObj.value.startingCoffee) * servings.value / waterUnitObj?.toGrams).toFixed(2);
+        // const waterUnitObj = unitsWater.find((item: { name: string; }) => item.name === waterUnits.value);
+        return ((drinkObj.value.ratio.water / drinkObj.value.ratio.coffee * drinkObj.value.startingCoffee) * servings.value / waterUnits.value.toGrams).toFixed(2);
     })
 
     const explanation = computed(() => {
@@ -83,9 +83,9 @@ export default function Calculator() {
                         <input
                             class={`font-bold text-xl text-center`}
                             onChange={handleWaterChange}
-                            value={water}>
+                            value={water.value}>
                         </input>
-                        {waterUnits}
+                        {waterUnits.value.name}
                     </p>
                 </div>
             </div>
@@ -106,7 +106,7 @@ export default function Calculator() {
                 </button>
             </div>
             <div id="explanation-container" class={`py-4 mb-4 px-4 bg-gray-200`}>
-                <p>{explanation}</p>
+                <p>{explanation.value}</p>
             </div>
         </div>
     );
