@@ -2,21 +2,21 @@
     {
         "name": "grams",
         "symbol": "g",
-        "tograms": 1.0
+        "toGrams": 1.0
     },
     {
         "name": "ounces",
         "symbol": "oz",
-        "tograms": 28.35
+        "toGrams": 28.35
     },
     {
         "name": "milliliters",
         "symbol": "ml",
-        "tograms": 1.0
+        "toGrams": 1.0
     },
     {
         "name": "cups",
         "symbol": "cups",
-        "tograms": 240.0
+        "toGrams": 240.0
     }
 ]

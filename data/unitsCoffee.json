@@ -2,16 +2,16 @@
     {
         "name": "grams",
         "symbol": "g",
-        "tograms": 1.0
+        "toGrams": 1.0
     },
     {
         "name": "ounces",
         "symbol": "oz",
-        "tograms": 28.35
+        "toGrams": 28.35
     },
     {
         "name": "tablespoons",
         "symbol": "tbsp",
-        "tograms": 5.0
+        "toGrams": 5.0
     }
 ]

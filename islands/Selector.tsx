@@ -12,7 +12,8 @@ export default function Selector(props: SelectorProps) {
 
   // deno-lint-ignore no-explicit-any
   const handleChosen = (event: { target: { value: any; }; }) => {
-    props.selector.value = event.target.value
+    console.log("handling change in selector")
+    props.selector.value = props.data.find((item: { name: string; }) => item.name === event.target.value)
   }
 
   console.log("signal value in Selector: ", props.selector.value)
