@@ -7,6 +7,8 @@ export const drink = signal<string>("aeropress");
 
 export const servings = signal<number>(1);
 
+export const multiplier = signal<number>(1);
+
 // deno-lint-ignore no-explicit-any
 export const coffeeUnits = signal<any>({
   name: "grams",
