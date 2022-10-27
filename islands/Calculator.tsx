@@ -25,7 +25,7 @@ export default function Calculator() {
 
   function SubstanceBlock(props: SubstanceBlockProps) {
     return (
-      <div class={`flex flex-col items-center justify-center px-8 py-8`}>
+      <div class={`flex flex-row items-center content-center py-10`}>
         <img
           src={props.icon}
           class={`h-12 w-12`}
@@ -34,7 +34,7 @@ export default function Calculator() {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              class={`font-bold text-xl text-center w-3/4`}
+              class={`font-bold text-xl text-center w-1/2`}
               onChange={handleSubstanceChange}
               data-substance={props.substance}
               value={props.substance.value}
@@ -89,27 +89,25 @@ export default function Calculator() {
   };
   const btn = `px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
   return (
-    <div class={`flex flex-col`}>
+    <div class={`flex flex-col content-center`}>
+    
       <div class="flex flex-row px-8 content-start hover:bg-teal-200 justify-center	">
         <div class={`flex flex-row pr-4 mb-8`}>
-          <p class="font-bold text-xl pr-1">drink:</p>
-          <Selector data={ratios} selector={drinkObj} />
+          <Selector data={ratios} selector={drinkObj} label="drink"/>
         </div>
         <div class={`flex flex-row pr-4 mb-8`}>
-          <p class="font-bold text-xl pr-1">coffee units:</p>
-          <Selector data={unitsCoffee} selector={coffeeUnits} />
+          <Selector data={unitsCoffee} selector={coffeeUnits} label="coffee units"/>
         </div>
         <div class={`flex flex-row pr-4 mb-8`}>
-          <p class="font-bold text-xl pr-1">water units:</p>
-          <Selector data={unitsWater} selector={waterUnits} />
+          <Selector data={unitsWater} selector={waterUnits} label="water units"/>
         </div>
       </div>
 
       <div
-        class={`flex flex-row justify-center self-center w-1/2 border(teal-300 1)`}
+        class={`flex flex-row items-center justify-center self-center w-1/2 border(teal-300 1) mb-10`}
       >
         {/* <p class={`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p> */}
-        <div class={`flex flex-row items-center justify-center px-8 py-8`}>
+        <div class={`flex flex-col items-center justify-left px-4 py-8`}>
           <SubstanceBlock
             substance={coffee}
             units={coffeeUnits}
@@ -122,9 +120,8 @@ export default function Calculator() {
             icon={"/water.png"}
           />
         </div>
-      </div>
-      <div class={`flex flex-row py-10 gap-2 w-1/2`}>
-        <p class={`flex-grow-1 font-bold text-xl`}>How many servings?</p>
+      <div class={`px-10 flex flex-row py-10  justify-center items-center content-center`}>
+        <p class={` mx-10 font-bold text-xl`}>How many servings?</p>
         <button
           class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
           onClick={() => servings.value = Math.max(servings.value - 1, 1)}
@@ -147,9 +144,14 @@ export default function Calculator() {
           +
         </button>
       </div>
-      <div id="explanation-container" class={`py-4 mb-4 px-4 bg-gray-200`}>
-        <p>{explanation.value}</p>
       </div>
+      <div class="self-center card bg-secondary mb-3" style="max-width:80%;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+        <h4 class="card-title">Title</h4>
+        <p class="card-text">{explanation.value}</p>
+      </div>
+    </div>
     </div>
   );
 }
