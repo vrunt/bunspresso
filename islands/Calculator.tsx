@@ -25,62 +25,62 @@ export default function Calculator() {
 
   function SubstanceBlock(props: SubstanceBlockProps) {
     return (
-      <div class={`flex flex-row items-center content-center py-10`}>
-        <img
-          src={props.icon}
-          class={`h-12 w-12`}
-        />
-        <p class={`font-bold text-xl text-center`}>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              class={`font-bold text-xl text-center w-1/2`}
-              onChange={handleSubstanceChange}
-              data-substance={props.substance}
-              value={props.substance.value}
-            >
-            </input>
-          </form>
-
-          {props.units.value.name}
-        </p>
-      </div>
+      <>
+        <div class={`flex flex-row items-center content-center py-10`}>
+          <img src={props.icon} class={`h-12 w-12`} />
+          <p class={`font-bold text-xl text-center`}>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                class={`font-bold text-xl text-center w-1/2`}
+                onChange={handleSubstanceChange}
+                data-substance={props.substance}
+                value={props.substance.value}
+              ></input>
+            </form>
+            {props.units.value.name}
+          </p>
+        </div>
+      </>
     );
   }
   const coffee = computed(() => {
     // const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
     // const coffeeUnitObj = unitsCoffee.find((item: { name: string; }) => item.name === coffeeUnits.value);
-    return (multiplier.value * drinkObj.value.startingCoffee * servings.value /
-      coffeeUnits.value.toGrams).toFixed(2);
+    return (
+      (multiplier.value * drinkObj.value.startingCoffee * servings.value) /
+      coffeeUnits.value.toGrams
+    ).toFixed(2);
   });
 
   const water = computed(() => {
     // const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
     // const waterUnitObj = unitsWater.find((item: { name: string; }) => item.name === waterUnits.value);
-    return ((multiplier.value * drinkObj.value.ratio.water /
-      drinkObj.value.ratio.coffee *
-      drinkObj.value.startingCoffee) *
-      servings.value / waterUnits.value.toGrams).toFixed(2);
+    return (
+      (((multiplier.value * drinkObj.value.ratio.water) /
+        drinkObj.value.ratio.coffee) *
+        drinkObj.value.startingCoffee *
+        servings.value) /
+      waterUnits.value.toGrams
+    ).toFixed(2);
   });
 
   const explanation = computed(() => {
     return drinkObj.value.explanation;
   });
 
-  const handleSubmit = (event: {
-    target: { value: string };
-  }) => {
+  const handleSubmit = (event: { target: { value: string } }) => {
     console.log(event.target.value);
     event.preventDefault();
   };
 
   // deno-lint-ignore no-explicit-any
-  const handleSubstanceChange = (
-    event: { target: { value: string; dataset: any } },
-  ) => {
+  const handleSubstanceChange = (event: {
+    target: { value: string; dataset: any };
+  }) => {
     console.log(`dataset is ${event.target.dataset.substance}`);
-    multiplier.value *= Number(event.target.value) /
-      Number(event.target.dataset.substance);
+    multiplier.value *=
+      Number(event.target.value) / Number(event.target.dataset.substance);
     console.log(`multiplier value is ${multiplier.value}`);
   };
 
@@ -89,69 +89,89 @@ export default function Calculator() {
   };
   const btn = `px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
   return (
-    <div class={`flex flex-col content-center`}>
-    
-      <div class="flex flex-row px-8 content-start hover:bg-teal-200 justify-center	">
-        <div class={`flex flex-row pr-4 mb-8`}>
-          <Selector data={ratios} selector={drinkObj} label="drink"/>
-        </div>
-        <div class={`flex flex-row pr-4 mb-8`}>
-          <Selector data={unitsCoffee} selector={coffeeUnits} label="coffee units"/>
-        </div>
-        <div class={`flex flex-row pr-4 mb-8`}>
-          <Selector data={unitsWater} selector={waterUnits} label="water units"/>
-        </div>
-      </div>
-
-      <div
-        class={`flex flex-row items-center justify-center self-center w-1/2 border(teal-300 1) mb-10`}
-      >
-        {/* <p class={`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p> */}
-        <div class={`flex flex-col items-center justify-left px-4 py-8`}>
-          <SubstanceBlock
-            substance={coffee}
-            units={coffeeUnits}
-            icon={"/cbeans.png"}
-          />
-
-          <SubstanceBlock
-            substance={water}
-            units={waterUnits}
-            icon={"/water.png"}
-          />
-        </div>
-      <div class={`px-10 flex flex-row py-10  justify-center items-center content-center`}>
-        <p class={` mx-10 font-bold text-xl`}>How many servings?</p>
-        <button
-          class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
-          onClick={() => servings.value = Math.max(servings.value - 1, 1)}
-        >
-          -
-        </button>
-        <form onSubmit={handleSubmit}>
-          <input
-            class={`inset-0 align-middle text-center min-h-full w-10 font-bold`}
-            type="text"
-            value={servings}
-            onChange={handleCups}
+    <div id="brew-animation-container">
+      <div class={`flex flex-col content-center`}>
+        <div class="flex flex-row px-8 content-start hover:bg-teal-200 justify-center	">
+          <div class={`flex flex-row pr-4 mb-8`}>
+            <Selector data={ratios} selector={drinkObj} label="drink" />
+          </div>
+          <div class={`flex flex-row pr-4 mb-8`}>
+            <Selector
+              data={unitsCoffee}
+              selector={coffeeUnits}
+              label="coffee units"
+            />
+          </div>
+          <div class={`flex flex-row pr-4 mb-8`}>
+            <Selector
+              data={unitsWater}
+              selector={waterUnits}
+              label="water units"
+            />
+          </div>
+          <button
+            type="button"
+            style="height:50%; align-self:center; margin-left:1rem; text-align:center;"
+            class="btn btn-outline-danger"
           >
-          </input>
-        </form>
-        <button
-          class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-r-lg`}
-          onClick={() => servings.value++}
+            BREW
+          </button>
+        </div>
+
+        <div
+          class={`flex flex-row items-center justify-center self-center w-1/2 border(teal-300 1) mb-10`}
         >
-          +
-        </button>
+          {/* <p class={`flex-grow-1 font-bold text-xl`}>drink: {chosenDrink}</p> */}
+          <div class={`flex flex-col items-center justify-left px-4 py-8`}>
+            <SubstanceBlock
+              substance={coffee}
+              units={coffeeUnits}
+              icon={"/cbeans.png"}
+            />
+
+            <SubstanceBlock
+              substance={water}
+              units={waterUnits}
+              icon={"/water.png"}
+            />
+          </div>
+          <div
+            class={`px-10 flex flex-col py-10  justify-center items-center content-center`}
+          >
+            <p class={` mx-10 font-bold text-xl`}>How many servings?</p>
+            <div class={`flex flex-row`}>
+              <button
+                class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-l-lg`}
+                onClick={() =>
+                  (servings.value = Math.max(servings.value - 1, 1))
+                }
+              >
+                -
+              </button>
+              <form onSubmit={handleSubmit}>
+                <input
+                  class={`inset-0 align-middle text-center min-h-full w-10 font-bold`}
+                  type="text"
+                  value={servings}
+                  onChange={handleCups}
+                ></input>
+              </form>
+              <button
+                class={`px-2 py-1 border(gray-100 1) hover:bg-gray-200 rounded-r-lg`}
+                onClick={() => servings.value++}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="self-center card bg-secondary mb-3" style="max-width:80%;">
+          <div class="card-header">{drinkObj.value.name}</div>
+          <div class="card-body">
+            <p class="card-text">{explanation.value}</p>
+          </div>
+        </div>
       </div>
-      </div>
-      <div class="self-center card bg-secondary mb-3" style="max-width:80%;">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-        <h4 class="card-title">Title</h4>
-        <p class="card-text">{explanation.value}</p>
-      </div>
-    </div>
     </div>
   );
 }
