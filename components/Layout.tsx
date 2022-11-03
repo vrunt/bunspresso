@@ -7,7 +7,6 @@ export default function Layout(props: { children?: ComponentChildren }) {
     <>
       <Head>
         <title>bunspresso</title>
-        <NavBar />
         <link rel="stylesheet" href="/lux.bootstrap.min.css" />
         <link rel="stylesheet" href="/brew.css" />
       </Head>

@@ -1,15 +1,11 @@
 import Calculator from "../islands/Calculator.tsx";
 import Layout from "../components/Layout.tsx";
+import NavBar from "../components/NavBar.tsx";
 
 export default function Home() {
   return (
     <Layout>
-        {/* <img
-          src="/espressocup.png"
-          class="h-12 mb-8"
-        /> */}
-        {/* <Navigator /> */}
-        <Calculator />
+      <Calculator />
     </Layout>
   );
 }

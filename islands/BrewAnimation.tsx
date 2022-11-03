@@ -1,7 +1,15 @@
 export default function BrewAnimation() {
   return (
     <div>
-      <h1>brew animation</h1>
+      <link rel="stylesheet" href="/brew.css" />
+      <link rel="stylesheet" href="/lux.bootstrap.min.css" />
+      <button
+        type="button"
+        style="height:50%; align-self:center; margin-left:1rem; text-align:center;"
+        class="btn btn-outline-danger"
+      >
+        BREW
+      </button>
     </div>
   );
 }
