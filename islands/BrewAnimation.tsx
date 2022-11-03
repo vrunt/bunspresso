@@ -1,6 +1,6 @@
 export default function BrewAnimation() {
   return (
-    <div>
+    <div >
       <link rel="stylesheet" href="/brew.css" />
       <link rel="stylesheet" href="/lux.bootstrap.min.css" />
       <button
