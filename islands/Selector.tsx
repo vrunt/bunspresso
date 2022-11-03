@@ -22,8 +22,7 @@ export default function Selector(props: SelectorProps) {
     <label class="form-label mt-4">{props.label}:</label>
    <select class="form-select font-italic text-xl" name="drinks" id="drink-select" onChange={handleChosen}>
         {props.data.map((option: {
-            name: ComponentChildren; value: string | number | string[] | undefined; text: string | number | bigint | boolean | object | ComponentChild[] | VNode<any> | null | undefined;
-        }, index: any) => (
+            name: ComponentChildren; value: string }, index: number) => (
             <option key={index} value={option.value}>
                 {option.name}
             </option>
