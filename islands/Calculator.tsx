@@ -22,6 +22,12 @@ export default function Calculator(props: CalculatorProps) {
   if (props.drink) {
     drink.value = props.drink;
   }
+  if (props.servings) {
+    servings.value = props.servings;
+  }
+  if (props.multiplier) {
+    multiplier.value = props.multiplier;
+  }
 
   //TODO: replace 'any' typing here with ReadonlySignal<T> (?) if possible
   interface SubstanceBlockProps {
