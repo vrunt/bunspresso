@@ -69,25 +69,25 @@ export default function Calculator() {
     return drinkObj.value.explanation;
   });
 
-  const handleSubmit = (event: { target: { value: string } }) => {
-    console.log(event.target.value);
+  const handleSubmit = (event: Event) => {
+    const target = event.target as HTMLFormElement;
+    console.log(target.value);
     event.preventDefault();
   };
 
-  // deno-lint-ignore no-explicit-any
-  const handleSubstanceChange = (event: {
-    target: { value: string; dataset: any };
-  }) => {
-    console.log(`dataset is ${event.target.dataset.substance}`);
+  const handleSubstanceChange = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    console.log(`dataset is ${target.dataset.substance}`);
     multiplier.value *=
-      Number(event.target.value) / Number(event.target.dataset.substance);
+      Number(target.value) / Number(target.dataset.substance);
     console.log(`multiplier value is ${multiplier.value}`);
   };
 
-  const handleCups = (event: { target: { value: any } }) => {
-    servings.value = Math.max(event.target.value, 1);
+  const handleCups = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    servings.value = Math.max(Number(target.value), 1);
   };
-  const btn = `px-2 py-1 border(gray-100 1) hover:bg-gray-200`;
+
   return (
     <div id="brew-animation-container">
       <div class={`flex flex-col content-center`}>
