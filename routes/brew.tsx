@@ -1,14 +1,10 @@
 import BrewAnimation from "../islands/BrewAnimation.tsx";
 
-
 export default function Brew() {
-    
+
   return (
-    <div class={`min-h-screen flex flex-row items-center`}>
-      <link rel="stylesheet" href="/brew.css" />
-      <div class={`flex flex-col items-center`}>
-        <BrewAnimation />
-      </div>
+    <div class={`min-h-screen flex flex-col justify-center items-center`}>
+      <BrewAnimation />
     </div>
   );
 }
