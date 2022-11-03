@@ -11,7 +11,6 @@ export default function BrewAnimation() {
     <div>
       <link rel="stylesheet" href="lux.bootstrap.min.css" />
       <div class={`flex flex-col contents-center items-center`}>
-        {isBrewing? <Liquid /> : <h1>not brewing</h1>}
         <button
           type="button"
           style="height:50%; align-self:center; margin-left:1rem; text-align:center;"
@@ -20,6 +19,7 @@ export default function BrewAnimation() {
         >
           BREW
         </button>
+        {isBrewing ? <Liquid /> : <h1>not brewing</h1>}
       </div>
     </div>
   );
