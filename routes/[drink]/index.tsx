@@ -9,8 +9,6 @@ export const handler: Handlers = {
         const drinkString = ctx.params.drink.toLowerCase().replace('%20', ' ');
         const drink = ratios.find((item: { name: string; }) => item.name === drinkString);
 
-        console.log(`passed drink arg is ${drinkString}`);
-        console.log(drink)
 
         if (drink) {
             return ctx.render({drink: drink});

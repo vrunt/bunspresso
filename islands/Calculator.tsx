@@ -19,11 +19,9 @@ export interface CalculatorProps {
 }
 
 export default function Calculator(props: CalculatorProps) {
-  console.log(`props drink is ${props.drink}`)
   if (props.drink) {
     drink.value = props.drink;
   }
-  console.log(drink.value)
 
   //TODO: replace 'any' typing here with ReadonlySignal<T> (?) if possible
   interface SubstanceBlockProps {
@@ -77,16 +75,13 @@ export default function Calculator(props: CalculatorProps) {
 
   const handleSubmit = (event: Event) => {
     const target = event.target as HTMLFormElement;
-    console.log(target.value);
     event.preventDefault();
   };
 
   const handleSubstanceChange = (event: Event) => {
     const target = event.target as HTMLInputElement;
-    console.log(`dataset is ${target.dataset.substance}`);
     multiplier.value *=
       Number(target.value) / Number(target.dataset.substance);
-    console.log(`multiplier value is ${multiplier.value}`);
   };
 
   const handleCups = (event: Event) => {
