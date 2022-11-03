@@ -27,14 +27,14 @@ export default function NavBar(props: NavBarProps) {
         <div class="navbar-collapse collapse show" id="navbarColor02" style="">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="/">
                 Home
                 <span class="visually-hidden">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                Features
+              <a class="nav-link" href="/brew">
+                Brew Page
               </a>
             </li>
             <li class="nav-item">
