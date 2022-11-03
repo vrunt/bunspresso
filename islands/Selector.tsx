@@ -10,10 +10,10 @@ export interface SelectorProps{
 
 export default function Selector(props: SelectorProps) {
 
-  // deno-lint-ignore no-explicit-any
-  const handleChosen = (event: { target: { value: any; }; }) => {
+  const handleChosen = (event: Event) => {
+    const target = event.target as HTMLSelectElement;
     console.log("handling change in selector")
-    props.selector.value = props.data.find((item: { name: string; }) => item.name === event.target.value)
+    props.selector.value = props.data.find((item: { name: string; }) => item.name === target.value)
   }
 
   console.log("signal value in Selector: ", props.selector.value)

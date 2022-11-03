@@ -17,9 +17,12 @@ export default function Calculator() {
   console.log("coffeeUnits in calculator: ", coffeeUnits.value);
   console.log("amount of coffee in calculator: ", coffeeUnits.value);
 
+  //TODO: replace 'any' typing here with ReadonlySignal<T> (?) if possible
   interface SubstanceBlockProps {
-    substance: typeof signal<number>;
-    units: typeof signal<string>;
+    // deno-lint-ignore no-explicit-any
+    substance: any;
+    // deno-lint-ignore no-explicit-any
+    units: any;
     icon: string;
   }
 
@@ -147,7 +150,7 @@ export default function Calculator() {
                 <input
                   class={`inset-0 align-middle text-center min-h-full w-10 font-bold`}
                   type="text"
-                  value={servings}
+                  value={servings.value}
                   onChange={handleCups}
                 ></input>
               </form>
