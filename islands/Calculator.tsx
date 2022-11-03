@@ -1,21 +1,29 @@
 import {
+  Drink,
   coffeeUnits,
   drink,
-  drinkObj,
   multiplier,
   servings,
   waterUnits,
 } from "../utils/signals.ts";
-import { computed, signal } from "@preact/signals";
+import { computed } from "@preact/signals";
 import Selector from "../islands/Selector.tsx";
 import ratios from "../data/ratios.json" assert { type: "json" };
 import unitsCoffee from "../data/unitsCoffee.json" assert { type: "json" };
 import unitsWater from "../data/unitsWater.json" assert { type: "json" };
 
-export default function Calculator() {
-  console.log("drinkObj in calculator: ", drinkObj.value);
-  console.log("coffeeUnits in calculator: ", coffeeUnits.value);
-  console.log("amount of coffee in calculator: ", coffeeUnits.value);
+export interface CalculatorProps {
+  drink? : Drink;
+  servings? : number;
+  multiplier? : number;
+}
+
+export default function Calculator(props: CalculatorProps) {
+  console.log(`props drink is ${props.drink}`)
+  if (props.drink) {
+    drink.value = props.drink;
+  }
+  console.log(drink.value)
 
   //TODO: replace 'any' typing here with ReadonlySignal<T> (?) if possible
   interface SubstanceBlockProps {
@@ -49,22 +57,22 @@ export default function Calculator() {
   }
   const coffee = computed<number>(() => {
     const result: number = 
-      (multiplier.value * drinkObj.value.startingCoffee * servings.value) / coffeeUnits.value.toGrams;
+      (multiplier.value * drink.value.startingCoffee * servings.value) / coffeeUnits.value.toGrams;
       return Math.round(result * 100) / 100;
   });
 
   const water = computed<number>(() => {
     const result: number = 
-      (((multiplier.value * drinkObj.value.ratio.water) /
-        drinkObj.value.ratio.coffee) *
-        drinkObj.value.startingCoffee *
+      (((multiplier.value * drink.value.ratio.water) /
+        drink.value.ratio.coffee) *
+        drink.value.startingCoffee *
         servings.value) /
       waterUnits.value.toGrams;
     return Math.round(result * 100) / 100;
   });
 
   const explanation = computed<string>(() => {
-    return drinkObj.value.explanation;
+    return drink.value.explanation;
   });
 
   const handleSubmit = (event: Event) => {
@@ -91,7 +99,7 @@ export default function Calculator() {
       <div class={`flex flex-col content-center`}>
         <div class="flex flex-row px-8 content-start hover:bg-teal-200 justify-center	">
           <div class={`flex flex-row pr-4 mb-8`}>
-            <Selector data={ratios} selector={drinkObj} label="drink" />
+            <Selector data={ratios} selector={drink} label="drink" />
           </div>
           <div class={`flex flex-row pr-4 mb-8`}>
             <Selector
@@ -164,7 +172,7 @@ export default function Calculator() {
           </div>
         </div>
         <div class="self-center card bg-secondary mb-3" style="max-width:80%;">
-          <div class="card-header">{drinkObj.value.name}</div>
+          <div class="card-header">{drink.value.name}</div>
           <div class="card-body">
             <p class="card-text">{explanation.value}</p>
           </div>

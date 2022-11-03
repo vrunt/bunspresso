@@ -3,9 +3,10 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/_app.tsx";
-import * as $1 from "./routes/index.tsx";
-import * as $2 from "./routes/signal_test.tsx";
+import * as $0 from "./routes/[drink]/index.tsx";
+import * as $1 from "./routes/_app.tsx";
+import * as $2 from "./routes/index.tsx";
+import * as $3 from "./routes/signal_test.tsx";
 import * as $$0 from "./islands/Calculator.tsx";
 import * as $$1 from "./islands/Navigator.tsx";
 import * as $$2 from "./islands/Selector.tsx";
@@ -13,9 +14,10 @@ import * as $$3 from "./islands/SignalTest.tsx";
 
 const manifest = {
   routes: {
-    "./routes/_app.tsx": $0,
-    "./routes/index.tsx": $1,
-    "./routes/signal_test.tsx": $2,
+    "./routes/[drink]/index.tsx": $0,
+    "./routes/_app.tsx": $1,
+    "./routes/index.tsx": $2,
+    "./routes/signal_test.tsx": $3,
   },
   islands: {
     "./islands/Calculator.tsx": $$0,
