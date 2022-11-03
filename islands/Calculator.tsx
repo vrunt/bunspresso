@@ -44,28 +44,23 @@ export default function Calculator() {
       </>
     );
   }
-  const coffee = computed(() => {
-    // const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
-    // const coffeeUnitObj = unitsCoffee.find((item: { name: string; }) => item.name === coffeeUnits.value);
-    return (
-      (multiplier.value * drinkObj.value.startingCoffee * servings.value) /
-      coffeeUnits.value.toGrams
-    ).toFixed(2);
+  const coffee = computed<number>(() => {
+    const result: number = 
+      (multiplier.value * drinkObj.value.startingCoffee * servings.value) / coffeeUnits.value.toGrams;
+      return Math.round(result * 100) / 100;
   });
 
-  const water = computed(() => {
-    // const drinkObj = ratios.find((item: { name: string; }) => item.name === drink.value);
-    // const waterUnitObj = unitsWater.find((item: { name: string; }) => item.name === waterUnits.value);
-    return (
+  const water = computed<number>(() => {
+    const result: number = 
       (((multiplier.value * drinkObj.value.ratio.water) /
         drinkObj.value.ratio.coffee) *
         drinkObj.value.startingCoffee *
         servings.value) /
-      waterUnits.value.toGrams
-    ).toFixed(2);
+      waterUnits.value.toGrams;
+    return Math.round(result * 100) / 100;
   });
 
-  const explanation = computed(() => {
+  const explanation = computed<string>(() => {
     return drinkObj.value.explanation;
   });
 
