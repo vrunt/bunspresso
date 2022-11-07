@@ -1,9 +1,9 @@
 export default function Liquid() {
   return (
     <>
-      <link rel="stylesheet" href="/brew.css" />
-      <div class={`flex flex-col contents-center items-center`}>
-        <div class={`container`}>
+      <div class={`container`}>
+        <link rel="stylesheet" href="/brew.css" />
+        <div class={`flex flex-col contents-center items-center`}>
           <h1>now brewing</h1>
         </div>
       </div>
